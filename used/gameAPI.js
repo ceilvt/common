@@ -2,9 +2,6 @@
  * Created by Administrator on 2015/11/10.
  */
 
-window.ifPass = 0;
-
-// 调用方法
 
 function ToJson(date) {
     if (typeof (date) == "string") {
@@ -24,16 +21,6 @@ function api1(){
     if(flag1){
         return;
     }
-    setTimeout(function(){
-        if(!flagTimeout){
-            showTxt('请求超时！');
-            return;
-        }
-        if(flag1){
-            showTxt('网络异常！');
-        }
-    },10000); //10秒超时 网络异常
-
     flag1 = true;
     var url = configGame.baseURL+'draw/gameBegin';
     var param = {token:'back',gameId:1};
@@ -56,40 +43,6 @@ function api1(){
     });
 }
 
-var flag2 = false;
-function api2(){
-    setTimeout(function(){
-        if(!flag2){
-            showTxt('网络异常！');
-            location.href = "game.html";
-        }
-    },10000); //10秒超时 网络异常
-
-    //仅供测试
-    //var arr = [1];
-    //window.ifPass = arr[Math.round(Math.random()*arr.length)];
-    //仅供测试
-
-
-    var url = configGame.baseURL+'draw/gameEnd';
-    var score = window.ifPass;
-    var param = {token:'back',gameId:1,score:score};
-    //var jsondata = JSON.stringify(obj);
-    $.post(url, param, function (data) {
-        flag2 = true;
-        if(data.status == -1){
-            showTxt('系统异常,请重新登录');
-        }else if(data.status == 0){
-            showTxt('游戏结束异常');
-        }else if(data.status == 1){
-            if(score == 1){
-                location.href = '../game_success.html';
-            }else{
-                location.href = '../game_failure.html';
-            }
-        }
-    });
-}
 function api3(){
     window.location = '../home.html';
 }
