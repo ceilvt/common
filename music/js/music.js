@@ -25,4 +25,5 @@ function addMusic(musicDir,musicName){
             $('#music')[0].pause();
         };
     });
+
 }

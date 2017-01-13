@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title></title>
+</head>
+<body>
+</body>
+<script src="js/jquery1.9.1.js"></script>
+<script src="js/jweixin-1.0.0.js"></script>
+<script src="js/music.js"></script>
+<script>
+    //示例
+    $(function(){
+        addMusic('images/','cnhk');
+        function audioAutoPlay(id){
+            var audios = document.getElementById(id);
+            audios.play();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                audios.play();
+            }, false);
+            document.addEventListener('YixinJSBridgeReady', function() {
+                audios.play();
+            }, false);
+        }
+        audioAutoPlay('music');
+    });
+</script>
+</html>
